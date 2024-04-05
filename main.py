@@ -30,8 +30,6 @@ class FullyConnectedLayer(Layer):
         self.grad_weights = value.T @ grad_output
         self.grad_bias = np.sum(grad_output, axis=0, keepdims=True)
 
-        '''Update weights and bias via SGD'''
-
         self.W -= self.learning_rate * self.grad_weights
         self.b -= self.learning_rate * self.grad_bias
         return self.grad_input
@@ -64,15 +62,23 @@ def main():
     n_features = len(data.X[0])
     n_classes = len(data.Y[0])
 
-    layer1 = FullyConnectedLayer(n_features, 16)
-    layer2 = FullyConnectedLayer(16, n_classes)
+    layers = [
+        FullyConnectedLayer(n_features, 16),
+        FullyConnectedLayer(16, n_classes),
+        ReLU(),
+    ]
 
-    hidden_activation = layer1.forward(data.X)
-    prediction = layer2.forward(hidden_activation)
-    print(prediction)
+    activations = []
+    values = data.X
 
-    loss = cross_entropy(prediction, data.Y)
-    print(f"loss = {loss}")
+    for layer in layers:
+        values = layer.forward(values)
+        activations.append(values)
+
+    print(activations)
+
+    loss = cross_entropy(values, data.Y)
+    print(loss)
 
 
 if __name__ == "__main__":
