@@ -4,10 +4,10 @@ from Dataset import Dataset, TrainingSet, TestingSet
 from functions import softmax, cross_entropy
 
 
-class Layer:
-    def __init__(self):
-        self.W = np.random.rand(784, 10)
-        self.b = np.random.rand(1, 10)
+class FullyConnectedLayer:
+    def __init__(self, n_features, n_classes):
+        self.W = np.random.rand(n_features, n_classes)
+        self.b = np.random.rand(1, n_classes)
 
     def forward(self, X):
         self.Z = np.dot(X, self.W) + self.b
@@ -22,8 +22,9 @@ class Layer:
 
 def main():
     training_data = TrainingSet()
-    print(training_data.X[0])
-    print(training_data.Y[0])
+
+    layer = FullyConnectedLayer(784, 10)
+    print(layer)
 
 
 if __name__ == "__main__":
