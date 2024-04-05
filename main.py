@@ -48,8 +48,12 @@ def main():
     data = XORDataset()
     print(data.X)
     print(data.Y)
+    n_features = 2
+    n_classes = 2
 
-    layer = FullyConnectedLayer(784, 10)
+    layer = FullyConnectedLayer(n_features, n_classes)
+    Y_hat = layer.forward(data.X)
+    print(Y_hat)
 
 
 if __name__ == "__main__":
