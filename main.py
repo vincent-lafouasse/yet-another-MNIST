@@ -8,7 +8,7 @@ def softmax():
 def cross_entropy():
     pass
 
-DATASET_PATH = {'X' : 0, "Y": 0}
+DATASET_PATH = {'X' : "", "Y": ""}
 
 class Dataset:
     def __init__(self, path):
