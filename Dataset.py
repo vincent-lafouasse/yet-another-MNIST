@@ -40,3 +40,23 @@ def one_hot_encode(label):
 
 def one_hot(labels):
     return [one_hot_encode(label) for label in labels]
+
+
+class XORDataset:
+    def __init__(self):
+        self.X = np.array(
+            [
+                [0.0, 0.0],
+                [0.0, 1.0],
+                [1.0, 1.0],
+                [1.0, 0.0],
+            ]
+        )
+        self.Y = np.array(
+            [
+                [1, 0],
+                [0, 1],
+                [0, 1],
+                [1, 0],
+            ]
+        )

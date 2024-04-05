@@ -1,6 +1,6 @@
 import numpy as np
 
-from Dataset import Dataset, TrainingSet, TestingSet
+from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
 from functions import softmax, cross_entropy
 
 
@@ -21,10 +21,11 @@ class FullyConnectedLayer:
 
 
 def main():
-    training_data = TrainingSet()
+    data = XORDataset()
+    print(data.X)
+    print(data.Y)
 
     layer = FullyConnectedLayer(784, 10)
-    print(layer)
 
 
 if __name__ == "__main__":
