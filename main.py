@@ -1,4 +1,5 @@
 import numpy as np
+import idx2numpy
 
 
 def softmax():
@@ -9,8 +10,8 @@ def cross_entropy():
     pass
 
 
-TRAIN_PATH = {"X": "train-images.idx3-ubyte", "Y": "train-labels.idx1-ubyte"}
-TEST_PATH = {"X": "t10k-images.idx3-ubyte", "Y": "t10k-labels.idx1-ubyte"}
+TRAIN_PATH = {"X": "data/train-images.idx3-ubyte", "Y": "data/train-labels.idx1-ubyte"}
+TEST_PATH = {"X": "data/t10k-images.idx3-ubyte", "Y": "data/t10k-labels.idx1-ubyte"}
 
 
 class Dataset:
@@ -36,7 +37,9 @@ class Layer:
 
 
 def main():
-    print("hello")
+    training_data = Dataset(TRAIN_PATH)
+    print(training_data.X[0])
+    print(training_data.Y[0])
 
 
 if __name__ == "__main__":
