@@ -6,14 +6,13 @@ from functions import sigmoid, cross_entropy
 
 class Layer:
     def __init(self, n_features, n_classes):
-        raise NotImplementedError('base class methods are virtual')
-
+        raise NotImplementedError("base class methods are virtual")
 
     def forward(self, X):
-        raise NotImplementedError('base class methods are virtual')
+        raise NotImplementedError("base class methods are virtual")
 
     def backward(self, Y_data):
-        raise NotImplementedError('base class methods are virtual')
+        raise NotImplementedError("base class methods are virtual")
 
 
 class FullyConnectedLayer(Layer):
