@@ -49,11 +49,14 @@ def main():
     n_features = len(data.X[0])
     n_classes = len(data.Y[0])
 
-    layer = FullyConnectedLayer(n_features, n_classes)
-    Y_hat = layer.forward(data.X)
-    print(Y_hat)
+    layer1 = FullyConnectedLayer(n_features, 16)
+    layer2 = FullyConnectedLayer(16, n_classes)
 
-    loss = cross_entropy(Y_hat, data.Y)
+    hidden_activation = layer1.forward(data.X)
+    prediction = layer2.forward(hidden_activation)
+    print(prediction)
+
+    loss = cross_entropy(prediction, data.Y)
     print(f"loss = {loss}")
 
 
