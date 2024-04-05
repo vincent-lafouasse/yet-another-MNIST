@@ -55,6 +55,9 @@ def main():
     Y_hat = layer.forward(data.X)
     print(Y_hat)
 
+    loss = cross_entropy(Y_hat, data.Y)
+    print(f"loss = {loss}")
+
 
 if __name__ == "__main__":
     main()

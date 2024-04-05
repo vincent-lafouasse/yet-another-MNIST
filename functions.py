@@ -6,6 +6,11 @@ def sigmoid(Z):
 
 
 def cross_entropy(Y_hat, Y_data):
+    # ensure that no log(0) is done
     delta = 1e-7
-    to_sum = Y_data * np.log(Y_hat + delta) + (1 - Y_data) * np.log((1 - Y_hat) + delta)
-    return -np.log(to_sum)
+    Y_hat += delta
+    Y_data = Y_data.astype(float)
+    Y_hat += delta
+
+    to_sum = Y_data * np.log(Y_hat) + (1 - Y_data) * np.log((1 - Y_hat)) + delta
+    return -np.sum(to_sum)
