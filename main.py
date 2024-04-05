@@ -1,7 +1,7 @@
 import numpy as np
 
 from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
-from functions import softmax, cross_entropy
+from functions import sigmoid, cross_entropy
 
 
 class Layer:
@@ -22,7 +22,7 @@ class FullyConnectedLayer(Layer):
 
     def forward(self, X):
         self.Z = np.dot(X, self.W) + self.b
-        self.Y_hat = softmax(self.Z)
+        self.Y_hat = sigmoid(self.Z)
         return self.Y_hat
 
     def backward(self, Y_data):
