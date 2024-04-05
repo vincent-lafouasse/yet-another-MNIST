@@ -9,13 +9,14 @@ def sigmoid_derivative(x):
     return sigmoid(x) * (1 - sigmoid(x))
 
 
+
 def cross_entropy(Y_hat, Y_data):
     # ensure that no log(0) is done
-    delta = 1e-7
+    epsilon = 1e-7
 
-    to_sum = Y_data * np.log(Y_hat + delta) + (1 - Y_data) * np.log((1 - Y_hat + delta))
-    return -np.sum(to_sum)
+    loss = -np.mean(np.sum(Y_data * np.log(Y_hat + epsilon), axis=1))
 
+    return loss
 
 def argmax(X):
     pass

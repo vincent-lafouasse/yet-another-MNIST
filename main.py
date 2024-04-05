@@ -24,8 +24,17 @@ class FullyConnectedLayer(Layer):
         self.Z = X @ self.W + self.b
         return self.Z
 
-    def backward(self, Y_data, learning_rate):
-        pass
+    def backward(self, Y, grad_output, learning_rate):
+        self.grad_input = grad_output @ self.W.T
+
+        self.grad_weights = value.T @ grad_output
+        self.grad_bias = np.sum(grad_output, axis=0, keepdims=True)
+
+        '''Update weights and bias via SGD'''
+
+        self.W -= self.learning_rate * self.grad_weights
+        self.b -= self.learning_rate * self.grad_bias
+        return self.grad_input
 
 
 class ReLU(Layer):
