@@ -22,8 +22,8 @@ class FullyConnectedLayer(Layer):
 
     def forward(self, X):
         self.Z = np.dot(X, self.W) + self.b
-        self.Y_hat = sigmoid(self.Z)
-        return self.Y_hat
+        self.A = sigmoid(self.Z)
+        return self.A
 
     def backward(self, Y_data, learning_rate):
         pass
