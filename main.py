@@ -78,12 +78,15 @@ def main():
     prediction = layer_inputs.pop()
 
     print("layer inputs:")
-    print(layer_inputs)
+    print(len(layer_inputs))
     print("prediction")
     print(prediction)
 
     loss = cross_entropy(prediction, data.Y)
-    print(loss)
+    print(f"Loss: {loss}")
+    # loss_grad = grad_cross_entropy(prediction, data.Y)
+
+    # print(loss_grad)
 
 
 if __name__ == "__main__":

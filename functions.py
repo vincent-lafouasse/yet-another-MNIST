@@ -17,13 +17,15 @@ def cross_entropy(Y_hat, Y_data):
 
     return loss
 
+
 def grad_cross_entropy(Y_hat, Y_data):
     ones_true_class = np.zeros_like(Y_hat)
-    ones_true_class[np.arange(len(Y_hat)),Y_data] = 1
+    ones_true_class[np.arange(len(Y_hat)), Y_data] = 1
 
-    softmax = np.exp(Y_hat) / np.exp(Y_hat).sum(axis=-1,keepdims=True)
-    
+    softmax = np.exp(Y_hat) / np.exp(Y_hat).sum(axis=-1, keepdims=True)
+
     return (-ones_true_class + softmax) / Y_hat.shape[0]
+
 
 def argmax(X):
     pass
