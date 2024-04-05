@@ -8,7 +8,10 @@ def softmax():
 def cross_entropy():
     pass
 
-DATASET_PATH = {'X' : "", "Y": ""}
+
+TRAIN_PATH = {"X": "train-images.idx3-ubyte", "Y": "train-labels.idx1-ubyte"}
+TEST_PATH = {"X": "t10k-images.idx3-ubyte", "Y": "t10k-labels.idx1-ubyte"}
+
 
 class Dataset:
     def __init__(self, path):
