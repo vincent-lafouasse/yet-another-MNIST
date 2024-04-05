@@ -4,7 +4,18 @@ from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
 from functions import softmax, cross_entropy
 
 
-class FullyConnectedLayer:
+class Layer:
+    def __init(self, n_features, n_classes):
+        pass
+
+    def forward(self, X):
+        pass
+
+    def backward(self, Y_data):
+        pass
+
+
+class FullyConnectedLayer(Layer):
     def __init__(self, n_features, n_classes):
         self.W = np.random.rand(n_features, n_classes)
         self.b = np.random.rand(1, n_classes)
@@ -18,6 +29,19 @@ class FullyConnectedLayer:
         dZ = self.Y_hat - Y_data
         q = 10
         db = (1 / q) * dZ
+
+
+class ActivationLayer(Layer):
+    def __init__(self):
+        pass
+
+
+class Network:
+    def __init__(self):
+        self.layers = []
+
+    def add(self, layer):
+        self.layers.append(layer)
 
 
 def main():
