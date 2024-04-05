@@ -1,14 +1,7 @@
 import numpy as np
 
 from Dataset import Dataset, TrainingSet, TestingSet
-
-
-def softmax():
-    pass
-
-
-def cross_entropy():
-    pass
+from functions import softmax, cross_entropy
 
 
 class Layer:
