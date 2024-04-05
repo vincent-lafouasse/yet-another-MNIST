@@ -21,17 +21,23 @@ class FullyConnectedLayer(Layer):
         self.b = np.random.rand(1, n_classes)
 
     def forward(self, X):
-        self.Z = np.dot(X, self.W) + self.b
-        self.A = sigmoid(self.Z)
-        return self.A
+        self.Z = X @ self.W + self.b
+        return self.Z
 
     def backward(self, Y_data, learning_rate):
         pass
 
 
-class ActivationLayer(Layer):
+class ReLU(Layer):
     def __init__(self):
         pass
+
+    def forward(self, X):
+        return np.maximum(0, X)
+
+    def backward(self, value, grad):
+        relu_grad = value > 0
+        return grad * relu_grad
 
 
 class Network:

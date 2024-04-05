@@ -16,5 +16,6 @@ def cross_entropy(Y_hat, Y_data):
     to_sum = Y_data * np.log(Y_hat + delta) + (1 - Y_data) * np.log((1 - Y_hat + delta))
     return -np.sum(to_sum)
 
+
 def argmax(X):
     pass
