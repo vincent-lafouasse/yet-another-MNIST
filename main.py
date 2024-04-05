@@ -25,10 +25,8 @@ class FullyConnectedLayer(Layer):
         self.Y_hat = sigmoid(self.Z)
         return self.Y_hat
 
-    def backward(self, Y_data):
-        dZ = self.Y_hat - Y_data
-        q = 10
-        db = (1 / q) * dZ
+    def backward(self, Y_data, learning_rate):
+        pass
 
 
 class ActivationLayer(Layer):
@@ -48,8 +46,8 @@ def main():
     data = XORDataset()
     print(data.X)
     print(data.Y)
-    n_features = 2
-    n_classes = 2
+    n_features = len(data.X[0])
+    n_classes = len(data.Y[0])
 
     layer = FullyConnectedLayer(n_features, n_classes)
     Y_hat = layer.forward(data.X)

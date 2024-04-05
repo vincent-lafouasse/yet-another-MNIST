@@ -2,7 +2,7 @@ import numpy as np
 
 
 def sigmoid(Z):
-    return 1 / (1 + np.exp(-Z))
+    return 1.0 / (1.0 + np.exp(-Z))
 
 
 def cross_entropy(Y_hat, Y_data):
