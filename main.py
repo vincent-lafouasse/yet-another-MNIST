@@ -68,16 +68,21 @@ def main():
         ReLU(),
     ]
 
-    activations = []
-    values = data.X
+    layer_inputs = [data.X]
+    input = data.X
 
     for layer in layers:
-        values = layer.forward(values)
-        activations.append(values)
+        input = layer.forward(input)
+        layer_inputs.append(input)
 
-    print(activations)
+    prediction = layer_inputs.pop()
 
-    loss = cross_entropy(values, data.Y)
+    print("layer inputs:")
+    print(layer_inputs)
+    print("prediction")
+    print(prediction)
+
+    loss = cross_entropy(prediction, data.Y)
     print(loss)
 
 
