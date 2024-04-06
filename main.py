@@ -1,7 +1,7 @@
 import numpy as np
 
 from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
-from functions import Sigmoid, ReLU, cross_entropy, grad_cross_entropy
+from functions import Sigmoid, ReLU, Softmax, cross_entropy, grad_cross_entropy
 
 
 class Layer:
@@ -60,6 +60,7 @@ def main():
     activations = [data.X]
     zs = []
 
+    # forward
     for layer in layers:
         z = layer.forward(activation)
         zs.append(z)
@@ -69,6 +70,12 @@ def main():
     print(zs)
     print(activations)
 
+    # backward
+    for layer in layers:
+        print(layer.b.shape)
+    grad_w = [np.zeros(layer.W.shape) for layer in layers]
+    grad_b = [np.zeros(layer.b.shape) for layer in layers]
+    print(grad_b)
 
 
 if __name__ == "__main__":

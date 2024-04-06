@@ -14,6 +14,17 @@ class Function:
         raise NotImplementedError("base class methods are virtual")
 
 
+class Softmax(Function):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def f(array):
+        return [
+            np.exp(component) / np.sum(np.exp(x) for x in array) for component in array
+        ]
+
+
 class Sigmoid(Function):
     def __init__(self):
         pass
