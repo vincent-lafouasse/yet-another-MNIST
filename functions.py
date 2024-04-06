@@ -1,12 +1,17 @@
 import numpy as np
 
 
-def sigmoid(x):
-    return 1.0 / (1.0 + np.exp(-x))
+class Sigmoid:
+    def __init__(self):
+        pass
 
+    @staticmethod
+    def f(x):
+        return 1.0 / (1.0 + np.exp(-x))
 
-def sigmoid_derivative(x):
-    return sigmoid(x) * (1 - sigmoid(x))
+    @staticmethod
+    def deriv(x):
+        return Sigmoid.f(x) * (1 - Sigmoid.f(x))
 
 
 def cross_entropy(Y_hat, Y_data):

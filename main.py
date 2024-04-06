@@ -1,7 +1,7 @@
 import numpy as np
 
 from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
-from functions import sigmoid, cross_entropy, grad_cross_entropy
+from functions import Sigmoid, cross_entropy, grad_cross_entropy
 
 
 class Layer:
