@@ -51,8 +51,10 @@ def main():
     data = XORDataset()
     n_features = len(data.X[0])
     n_classes = len(data.Y[0])
-    print(data.X.shape)
-    print(data.X[0])
+    print(f"{data.X.shape=}")
+    print(f"{data.X[0]=}")
+    print(f"{data.Y[0]=}")
+    print()
 
     layers = [
         FullyConnectedLayer(n_features, 16, is_output=False),
@@ -73,14 +75,13 @@ def main():
             activation = Sigmoid.f(z)
         activations.append(activation)
 
-    print(activations[-1])
+    print(f"{activations[-1]=}")
 
     # backward
     for layer in layers:
-        print(layer.b.shape)
+        print(f"{layer.b.shape=}")
     grad_w = [np.zeros(layer.W.shape) for layer in layers]
     grad_b = [np.zeros(layer.b.shape) for layer in layers]
-
 
 
 if __name__ == "__main__":
