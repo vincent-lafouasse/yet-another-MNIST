@@ -2,6 +2,10 @@
 
 numpy is great, i dont need much else
 
+## dataset source
+
+http://yann.lecun.com/exdb/mnist/
+
 ## ressources
 
 - http://neuralnetworksanddeeplearning.com
