@@ -10,7 +10,7 @@ class Function:
         raise NotImplementedError("base class methods are virtual")
 
     @staticmethod
-    def deriv(x):
+    def prime(x):
         raise NotImplementedError("base class methods are virtual")
 
 
@@ -23,7 +23,7 @@ class Sigmoid(Function):
         return 1.0 / (1.0 + np.exp(-x))
 
     @staticmethod
-    def deriv(x):
+    def prime(x):
         return Sigmoid.f(x) * (1 - Sigmoid.f(x))
 
 
@@ -36,7 +36,7 @@ class ReLU(Function):
         return np.maximum(0.0, x)
 
     @staticmethod
-    def deriv(x):
+    def prime(x):
         return 1.0 * (x > 0)
 
 

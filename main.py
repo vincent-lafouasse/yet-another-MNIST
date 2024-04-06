@@ -22,7 +22,8 @@ class FullyConnectedLayer(Layer):
 
     def forward(self, X):
         self.Z = X @ self.W + self.b
-        return self.Z
+        self.A = Sigmoid.f(self.Z)
+        return self.A
 
     # Y = target output?
     # dC/dw_i = (dC/da) * (da/dz) * (dz/dw_i)
@@ -36,17 +37,6 @@ class FullyConnectedLayer(Layer):
         self.W -= self.learning_rate * self.grad_weights
         self.b -= self.learning_rate * self.grad_bias
         return self.grad_input
-
-
-class ReLULayer(Layer):
-    def __init__(self):
-        pass
-
-    def forward(self, X):
-        return ReLU.f(X)
-
-    def backward(self, value, grad):
-        return grad * ReLU.deriv(value)
 
 
 class Network:
@@ -67,7 +57,6 @@ def main():
     layers = [
         FullyConnectedLayer(n_features, 16),
         FullyConnectedLayer(16, n_classes),
-        ReLULayer(),
     ]
 
     layer_inputs = [data.X]
