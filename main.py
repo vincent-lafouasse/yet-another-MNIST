@@ -22,8 +22,7 @@ class FullyConnectedLayer(Layer):
 
     def forward(self, X):
         self.Z = X @ self.W + self.b
-        self.A = Sigmoid.f(self.Z)
-        return self.A
+        return self.Z
 
     # Y = target output?
     # dC/dw_i = (dC/da) * (da/dz) * (dz/dw_i)
@@ -49,8 +48,6 @@ class Network:
 
 def main():
     data = XORDataset()
-    print(data.X)
-    print(data.Y)
     n_features = len(data.X[0])
     n_classes = len(data.Y[0])
 
@@ -59,25 +56,19 @@ def main():
         FullyConnectedLayer(16, n_classes),
     ]
 
-    layer_inputs = [data.X]
-    input = data.X
+    activation = data.X
+    activations = [data.X]
+    zs = []
 
     for layer in layers:
-        input = layer.forward(input)
-        layer_inputs.append(input)
+        z = layer.forward(activation)
+        zs.append(z)
+        activation = Sigmoid.f(z)
+        activations.append(activation)
 
-    prediction = layer_inputs.pop()
+    print(zs)
+    print(activations)
 
-    print("layer inputs:")
-    print(len(layer_inputs))
-    print("prediction")
-    print(prediction)
-
-    loss = cross_entropy(prediction, data.Y)
-    print(f"Loss: {loss}")
-    # loss_grad = grad_cross_entropy(prediction, data.Y)
-
-    # print(loss_grad)
 
 
 if __name__ == "__main__":
