@@ -1,7 +1,20 @@
 import numpy as np
 
 
-class Sigmoid:
+class Function:
+    def __init__(self):
+        raise NotImplementedError("base class methods are virtual")
+
+    @staticmethod
+    def f(x):
+        raise NotImplementedError("base class methods are virtual")
+
+    @staticmethod
+    def deriv(x):
+        raise NotImplementedError("base class methods are virtual")
+
+
+class Sigmoid(Function):
     def __init__(self):
         pass
 
@@ -12,6 +25,19 @@ class Sigmoid:
     @staticmethod
     def deriv(x):
         return Sigmoid.f(x) * (1 - Sigmoid.f(x))
+
+
+class ReLU(Function):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def f(x):
+        return np.maximum(0.0, x)
+
+    @staticmethod
+    def deriv(x):
+        return 1.0 * (x > 0)
 
 
 def cross_entropy(Y_hat, Y_data):

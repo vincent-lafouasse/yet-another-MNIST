@@ -1,7 +1,7 @@
 import numpy as np
 
 from Dataset import Dataset, TrainingSet, TestingSet, XORDataset
-from functions import Sigmoid, cross_entropy, grad_cross_entropy
+from functions import Sigmoid, ReLU, cross_entropy, grad_cross_entropy
 
 
 class Layer:
@@ -35,16 +35,15 @@ class FullyConnectedLayer(Layer):
         return self.grad_input
 
 
-class ReLU(Layer):
+class ReLULayer(Layer):
     def __init__(self):
         pass
 
     def forward(self, X):
-        return np.maximum(0, X)
+        return ReLU.f(X)
 
     def backward(self, value, grad):
-        relu_grad = value > 0
-        return grad * relu_grad
+        return grad * ReLU.deriv(value)
 
 
 class Network:
@@ -65,7 +64,7 @@ def main():
     layers = [
         FullyConnectedLayer(n_features, 16),
         FullyConnectedLayer(16, n_classes),
-        ReLU(),
+        ReLULayer(),
     ]
 
     layer_inputs = [data.X]
