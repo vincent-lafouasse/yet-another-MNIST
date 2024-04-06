@@ -16,9 +16,10 @@ class Layer:
 
 
 class FullyConnectedLayer(Layer):
-    def __init__(self, n_features, n_classes):
+    def __init__(self, n_features, n_classes, is_output):
         self.W = np.random.rand(n_features, n_classes)
         self.b = np.random.rand(1, n_classes)
+        self.is_output = is_output
 
     def forward(self, X):
         self.Z = X @ self.W + self.b
@@ -30,11 +31,11 @@ class FullyConnectedLayer(Layer):
     def backward(self, Y, grad_output, learning_rate):
         self.grad_input = grad_output @ self.W.T
 
-        self.grad_weights = value.T @ grad_output
-        self.grad_bias = np.sum(grad_output, axis=0, keepdims=True)
+        self.grad_w = value.T @ grad_output
+        self.grad_b = np.sum(grad_output, axis=0, keepdims=True)
 
-        self.W -= self.learning_rate * self.grad_weights
-        self.b -= self.learning_rate * self.grad_bias
+        self.W -= self.learning_rate * self.grad_w
+        self.b -= self.learning_rate * self.grad_b
         return self.grad_input
 
 
@@ -50,10 +51,12 @@ def main():
     data = XORDataset()
     n_features = len(data.X[0])
     n_classes = len(data.Y[0])
+    print(data.X.shape)
+    print(data.X[0])
 
     layers = [
-        FullyConnectedLayer(n_features, 16),
-        FullyConnectedLayer(16, n_classes),
+        FullyConnectedLayer(n_features, 16, is_output=False),
+        FullyConnectedLayer(16, n_classes, is_output=True),
     ]
 
     activation = data.X
@@ -64,18 +67,20 @@ def main():
     for layer in layers:
         z = layer.forward(activation)
         zs.append(z)
-        activation = Sigmoid.f(z)
+        if layer.is_output:
+            activation = Softmax.f(z)
+        else:
+            activation = Sigmoid.f(z)
         activations.append(activation)
 
-    print(zs)
-    print(activations)
+    print(activations[-1])
 
     # backward
     for layer in layers:
         print(layer.b.shape)
     grad_w = [np.zeros(layer.W.shape) for layer in layers]
     grad_b = [np.zeros(layer.b.shape) for layer in layers]
-    print(grad_b)
+
 
 
 if __name__ == "__main__":
