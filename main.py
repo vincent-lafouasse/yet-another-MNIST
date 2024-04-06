@@ -24,6 +24,9 @@ class FullyConnectedLayer(Layer):
         self.Z = X @ self.W + self.b
         return self.Z
 
+    # Y = target output?
+    # dC/dw_i = (dC/da) * (da/dz) * (dz/dw_i)
+    # same but replace w with b
     def backward(self, Y, grad_output, learning_rate):
         self.grad_input = grad_output @ self.W.T
 

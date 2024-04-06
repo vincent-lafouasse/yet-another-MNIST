@@ -40,6 +40,21 @@ class ReLU(Function):
         return 1.0 * (x > 0)
 
 
+class Loss:
+    def __init__(self):
+        pass
+
+
+class MSE(Loss):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def f(Y_hat, Y_data):
+        to_mean = (Y_hat - Y_data) ** 2
+        return np.mean(to_mean)
+
+
 def cross_entropy(Y_hat, Y_data):
     # ensure that no log(0) is done
     epsilon = 1e-7
