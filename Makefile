@@ -1,5 +1,10 @@
+.PHONY: all
 all:
 	python3 main.py
 
-fmt:
+.PHONY: format
+format:
 	black *.py
+
+.PHONY: f
+f: format

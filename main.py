@@ -82,6 +82,13 @@ def main():
         print(f"{layer.b.shape=}")
     grad_w = [np.zeros(layer.W.shape) for layer in layers]
     grad_b = [np.zeros(layer.b.shape) for layer in layers]
+    
+    array = np.array([1, 2, 3, 4, 5])
+    softmaxed = Softmax.f(array)
+    softmax_sum = np.sum(softmaxed)
+    print(f"{array=}")
+    print(f"{softmaxed=}")
+    print(f"{softmax_sum=}")
 
 
 if __name__ == "__main__":
